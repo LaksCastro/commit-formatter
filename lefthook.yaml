@@ -7,7 +7,7 @@ pre-push:
   parallel: true
   commands:
     tests:
-      run: flutter test
+      run: pub run test
     linter:
       run: flutter analyze
 
