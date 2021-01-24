@@ -15,20 +15,19 @@ class CommitlintFormatter extends CommitFormatter {
   static const _withScope = '<EMOJI> <TYPE>(<SCOPE>): <SUBJECT>';
   static const _withoutScope = '<EMOJI> <TYPE>: <SUBJECT>';
 
-  static const _types = {'TEST', 'FEAT', 'FIX', 'DOCS', 'CHORE'};
+  /// * Emojis used by <TYPE> field
+  static const emojis = <String, String>{
+    'TEST': '⚠️',
+    'FEAT': '⭐',
+    'FIX': '🐛',
+    'DOCS': '📖',
+    'CHORE': '🌱',
+  };
 
   String _mapEmojiFromType(String type) {
     type = type.toUpperCase();
 
-    const mappedEmojis = <String, String>{
-      'TEST': '⚠️',
-      'FEAT': '⭐',
-      'FIX': '🐛',
-      'DOCS': '📖',
-      'CHORE': '🌱',
-    };
-
-    final emoji = mappedEmojis[type];
+    final emoji = emojis[type];
 
     return emoji;
   }
@@ -50,7 +49,7 @@ class CommitlintFormatter extends CommitFormatter {
   }
 
   void _validateType(String type) {
-    final isValidType = _types.any(
+    final isValidType = emojis.keys.any(
       (validType) => RegExp(validType, caseSensitive: false).hasMatch(type),
     );
 

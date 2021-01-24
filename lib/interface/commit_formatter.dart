@@ -49,10 +49,12 @@ abstract class CommitFormatter {
   /// ```
   ///
   /// and return it
+  @visibleForTesting
   @protected
   Map<String, String> getFields(String rawCommit);
 
   /// * Use this method to change any field, like a uppercase or camel case
+  @visibleForTesting
   @protected
   Map<String, String> styleFields(Map<String, String> fields) => fields;
 
@@ -60,6 +62,7 @@ abstract class CommitFormatter {
   /// * the rawCommit offers
   ///
   /// `fields` are the map that your classes returned from `getFields()` method
+  @visibleForTesting
   @protected
   String getCommitTemplate(Map<String, String> fields);
 }
